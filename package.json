@@ -1,0 +1,28 @@
+{
+  "name": "iwantpizza_api",
+  "version": "1.0.0",
+  "description": "API for I want Pizza",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/rvillaverde/iwantpizza_api.git"
+  },
+  "author": "Romina Villaverde",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rvillaverde/iwantpizza_api/issues"
+  },
+  "homepage": "https://github.com/rvillaverde/iwantpizza_api#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.16.4",
+    "serverless-mysql": "^1.5.4",
+    "sql-template-strings": "^2.2.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.11"
+  }
+}
