@@ -17,7 +17,8 @@ app.use(express.json());
 
 // GET method to retrieve all products
 app.get('/products', async function(request, response) {
-  let products = await ProductService.getProducts();
+  let ids = request.query.ids && request.query.ids.split(',');
+  let products = await ProductService.getProducts(ids);
   response.status(200).send(products);
 });
 
