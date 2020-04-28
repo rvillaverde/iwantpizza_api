@@ -1,4 +1,5 @@
 const express = require('express');
+var cors = require('cors');
 const port =  process.env.PORT || 3000;
 
 const path = require('path');
@@ -7,6 +8,7 @@ const path = require('path');
 -- Express App config --
 ------------------------ */
 let app = express();
+app.use(cors());
 
 const ProductService = require('./lib/productService.js');
 

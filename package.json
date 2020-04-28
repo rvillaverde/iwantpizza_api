@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/rvillaverde/iwantpizza_api#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.16.4",
     "serverless-mysql": "^1.5.4",
