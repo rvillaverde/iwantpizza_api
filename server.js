@@ -10,10 +10,10 @@ const path = require('path');
 let app = express();
 app.use(cors());
 
-const CustomerService = require('./lib/customerService.js');
-const ProductService = require('./lib/productService.js');
-const OrderService = require('./lib/orderService.js');
-const ShippingService = require('./lib/shippingService.js');
+const CustomerService = require('./services/customerService.js');
+const ProductService = require('./services/productService.js');
+const OrderService = require('./services/orderService.js');
+const ShippingService = require('./services/shippingService.js');
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
