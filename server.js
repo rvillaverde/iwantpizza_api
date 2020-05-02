@@ -78,7 +78,7 @@ app.get('/shipping', async function(request, response) {
 });
 
 app.listen(port, function() {
-  console.log('Server running at port 3000: http://localhost:3000');
+  console.log(`Server running at port ${ port }: http://localhost:${ port }`);
 });
 
 // GET method to prevent 404 not found
