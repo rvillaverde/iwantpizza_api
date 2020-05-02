@@ -25,11 +25,13 @@ module.exports = {
   },
   createCustomer: function(customer) {
     return new Promise(async (resolve, reject) => {
-      models.customer.create(customer, { returning: true });
-    }).then(customer => {
-      resolve(customer);
-    }).catch(err => {
-      reject(err);
+      models.customer.create(customer,{
+        returning: true
+      }).then(customer => {
+        resolve(customer);
+      }).catch(err => {
+        reject(err);
+      });
     });
   }
 };
