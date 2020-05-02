@@ -4,9 +4,9 @@
   "description": "API for I want Pizza",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon server.js",
-    "start": "node server.js",
-    "test": "jest"
+    "start": "nodemon server.js",
+    "test": "npm run test-models",
+    "test-models": "cross-env NODE_ENV=test ./node_modules/.bin/mocha test/models/*.test.js"
   },
   "repository": {
     "type": "git",
@@ -22,12 +22,15 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.16.4",
-    "jest": "^25.5.4",
     "mysql2": "^2.1.0",
     "sequelize": "^5.21.7",
-    "sequelize-mock": "^0.10.2"
+    "sqlite": "^4.0.7",
+    "sqlite3": "^4.2.0"
   },
   "devDependencies": {
+    "cross-env": "^3.1.3",
+    "expect.js": "^0.3.1",
+    "mocha": "^7.1.2",
     "nodemon": "^1.18.11"
   }
 }

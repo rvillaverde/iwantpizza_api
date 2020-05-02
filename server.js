@@ -1,6 +1,6 @@
 const express = require('express');
 var cors = require('cors');
-const port =  process.env.PORT || 3000;
+const port =  process.env.PORT || 8080;
 
 const path = require('path');
 
@@ -10,6 +10,7 @@ const path = require('path');
 let app = express();
 app.use(cors());
 
+const models = require('./models');
 const CustomerService = require('./services/customerService.js');
 const ProductService = require('./services/productService.js');
 const OrderService = require('./services/orderService.js');
@@ -17,6 +18,11 @@ const ShippingService = require('./services/shippingService.js');
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
+
+// Index GET method
+app.get('/', async function(request, response) {
+  response.status(200).send('Welcome to I want pizza API.');
+});
 
 // GET method to retrieve all products
 app.get('/products', async function(request, response) {
@@ -77,9 +83,11 @@ app.get('/shipping', async function(request, response) {
   response.status(200).send({ fee: shippingFee });
 });
 
-app.listen(port, function() {
-  console.log(`Server running at port ${ port }: http://localhost:${ port }`);
+models.sequelize.sync().then(function () {
+  app.listen(port, function() {
+    console.log(`Server running at port ${ port }: http://localhost:${ port }`);
+  });
 });
 
 // GET method to prevent 404 not found
-/*app.get('*', function(request, response) { response.redirect('/') });*/
+app.get('*', function(request, response) { response.redirect('/') });

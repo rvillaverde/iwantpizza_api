@@ -12,11 +12,7 @@ module.exports = {
   },
   getProduct: function(id) {
     return new Promise((resolve, reject) => {
-      models.product.findOne({
-        where: {
-          product_id: id
-        }
-      }).then(product => {
+      models.product.findByPk(id).then(product => {
         resolve(product);
       }).catch(err => {
         reject(err);
@@ -25,7 +21,7 @@ module.exports = {
   },
   createProduct: function(product) {
     return new Promise(async (resolve, reject) => {
-      models.product.create(product, { returning: true });
+      models.product.create(product);
     }).then(product => {
       resolve(product);
     }).catch(err => {

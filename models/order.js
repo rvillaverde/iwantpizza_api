@@ -14,17 +14,22 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   Order.associate = function(models) {
-    Order.hasOne(models.customer, { foreignKey: 'customer_id' })
-    Order.belongsTo(models.customer, { foreignKey: 'customer_id' });
+    //Order.hasOne(models.customer, { foreignKey: 'customer_id' })
+    Order.belongsTo(models.customer, { 
+      foreignKey: 'customer_id',
+      onDelete: "CASCADE"
+    });
 
     models.product.belongsToMany(Order, {
       through: sequelize.models.order_product,
-      foreignKey: 'product_id'
+      foreignKey: 'product_id',
+      onDelete: "CASCADE"
     });
 
     Order.belongsToMany(models.product, {
       through: sequelize.models.order_product,
-      foreignKey: 'order_id'
+      foreignKey: 'order_id',
+      onDelete: "CASCADE"
     });
   }
 

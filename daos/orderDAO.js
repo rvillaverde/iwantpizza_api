@@ -20,7 +20,7 @@ module.exports = {
   },
   getOrder: function(id) {
     return new Promise((resolve, reject) => {
-      models.order.findOne({
+      models.order.findByPk(id, {
         include: [ models.customer, { model: models.product,
           through: {
             model: models.order_product,
@@ -28,10 +28,7 @@ module.exports = {
             attributes: ['quantity'],
           }
          }
-        ],
-        where: {
-          order_id: id
-        }
+        ]
       }).then(order => {
         resolve(order);
       }).catch(err => {
@@ -40,7 +37,7 @@ module.exports = {
     });
   },
   createOrder: async function(order, items) {
-    const savedOrder = await models.order.create(order, { returning: true });
+    const savedOrder = await models.order.create(order);
     let orderProducts = [];
     items.forEach(async (item) => {
       orderProducts.push({
@@ -49,7 +46,7 @@ module.exports = {
         quantity: item.quantity,
       });
     });
-    await models.order_product.bulkCreate(orderProducts, { returning: true });
+    await models.order_product.bulkCreate(orderProducts);
     return savedOrder;
   }
 };

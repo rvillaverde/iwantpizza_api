@@ -12,11 +12,7 @@ module.exports = {
   },
   getCustomer: function(id) {
     return new Promise((resolve, reject) => {
-      models.customer.findOne({
-        where: {
-          customer_id: id
-        }
-      }).then(customer => {
+      models.customer.findByPk(id).then(customer => {
         resolve(customer);
       }).catch(err => {
         reject(err);
@@ -25,9 +21,7 @@ module.exports = {
   },
   createCustomer: function(customer) {
     return new Promise(async (resolve, reject) => {
-      models.customer.create(customer,{
-        returning: true
-      }).then(customer => {
+      models.customer.create(customer).then(customer => {
         resolve(customer);
       }).catch(err => {
         reject(err);
