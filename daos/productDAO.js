@@ -3,7 +3,11 @@ const models  = require('../models');
 module.exports = {
   getProducts: function() {
     return new Promise((resolve, reject) => {
-      models.product.findAll().then(products => {
+      models.product.findAll({
+        order: [
+          ['price', 'ASC'],
+        ]
+      }).then(products => {
         resolve(products);
       }).catch(err => {
         reject(err);

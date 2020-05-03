@@ -41,7 +41,7 @@ module.exports = {
     let orderProducts = [];
     items.forEach(async (item) => {
       orderProducts.push({
-        order_id: savedOrder.getDataValue('order_id'),
+        order_id: savedOrder.order_id,
         product_id: item.id,
         quantity: item.quantity,
       });

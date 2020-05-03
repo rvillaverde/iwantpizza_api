@@ -11,7 +11,7 @@ class CustomerService {
 
   static async createCustomer(customer) {
     const savedCustomer = await CustomerDAO.createCustomer(customer, { returning: true });
-    return savedCustomer.getDataValue('customer_id');
+    return savedCustomer.customer_id;
   }
 }
 

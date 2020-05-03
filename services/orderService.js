@@ -12,7 +12,7 @@ class OrderService {
   static async createOrder(order, items) {
     order.subtotal = items.reduce((total, item) => (item.price * item.quantity + total), 0);
     const savedOrder = await OrderDAO.createOrder(order, items);
-    return savedOrder.getDataValue('order_id');
+    return savedOrder.order_id;
   }
 }
 
