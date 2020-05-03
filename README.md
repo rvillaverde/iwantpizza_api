@@ -2,6 +2,14 @@
 
 This is the API for [I want pizza](https://github.com/rvillaverde/iwantpizza) demo.
 
+## Getting started
+
+Before you start up the server, run
+
+### `npm install`
+
+to install all the dependencies.
+
 ## Available Scripts
 
 In the project directory, you can run:
