@@ -1,6 +1,6 @@
 const express = require('express');
 var cors = require('cors');
-const port =  process.env.PORT || 3000;
+const port =  process.env.PORT || 8080;
 
 const path = require('path');
 
@@ -68,8 +68,10 @@ app.get('/orders/:id', async function(request, response) {
 app.post('/orders', async function(request, response) {
   let customer = request.body.customer;
   let products = request.body.products;
+  console.log(request.body)
 
   let order = {};
+  order.currency = request.body.currency;
   order.customer_id = await CustomerService.createCustomer(customer);
   order.shipping_fee = ShippingService.calculateShipping(customer.postal_code);
   order.order_id = await OrderService.createOrder(order, products);

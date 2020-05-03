@@ -5,6 +5,9 @@ module.exports = function(sequelize, DataTypes) {
       autoIncrement: true,
       primaryKey: true
     },
+    currency: {
+      type: DataTypes.STRING
+    },
     subtotal: {
       type: DataTypes.INTEGER
     },
@@ -14,7 +17,6 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   Order.associate = function(models) {
-    //Order.hasOne(models.customer, { foreignKey: 'customer_id' })
     Order.belongsTo(models.customer, { 
       foreignKey: 'customer_id',
       onDelete: "CASCADE"

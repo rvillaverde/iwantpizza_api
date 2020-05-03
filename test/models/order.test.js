@@ -3,6 +3,7 @@ const expect = require('expect.js');
 describe('models/order', function() {
   let defaultOrder, defaultCustomer, defaultProduct;
   let orderProps = {
+    currency: 'usd',
     subtotal: 20,
     shipping_fee: 5
   }
