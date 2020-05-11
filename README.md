@@ -21,7 +21,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### `npm run test`
 
-Runs tests for models and DAO.<br>
+Runs tests for models and DAOs.<br>
 
 
 ## Available endpoints
@@ -45,6 +45,14 @@ Returns all products.
 ### `GET /products/:id`
 
 Returns the product given its id.
+
+### `POST /products/`
+
+Persist product in the database.
+
+### `POST /products/:id/delete`
+
+Delete product from the database.
 
 ### `GET /orders`
 
