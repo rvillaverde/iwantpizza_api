@@ -16,7 +16,8 @@ describe('DAOS/product', function() {
     product: {
       findAll: async () => [ defaultProduct ],
       findByPk: async (id) => Object.assign(defaultProduct, { product_id: id }),
-      create: async (product) => Object.assign(product, { product_id: productId }) 
+      create: async (product) => Object.assign(product, { product_id: productId }),
+      destroy: async (id) => 1
     }
   }
 
@@ -37,6 +38,28 @@ describe('DAOS/product', function() {
     it('returns product', function() {
       return this.productDAO.getProduct(productId).then(function(product) {
         expect(product.product_id).to.equal(productId);
+      });
+    });
+  });
+
+  describe('createProduct', function() {
+    it('creates product', function() {
+      const spy = chai.spy.on(modelsStub.product, 'create');
+
+      return this.productDAO.createProduct(defaultProduct).then(function(product) {
+        expect(product.product_id).to.equal(productId);
+        expect(spy).to.have.been.called.once.with(defaultProduct);
+      });
+    });
+  });
+
+  describe('deleteProduct', function() {
+    it('deletes the product', function() {
+      const spy = chai.spy.on(modelsStub.product, 'destroy');
+
+      return this.productDAO.deleteProduct(productId).then(function(deleted) {
+        expect(deleted).to.equal(1);
+        expect(spy).to.have.been.called.once;
       });
     });
   });

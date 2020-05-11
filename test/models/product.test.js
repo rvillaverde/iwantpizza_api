@@ -10,7 +10,7 @@ describe('models/product', function() {
     photo_url: 'product photo url'
   }
 
-  before(async function() {
+  beforeEach(async function() {
     await require('../../models').product.sync({ force : true });
     this.product = require('../../models').product;
     defaultProduct = await this.product.create(defaultProps);
@@ -18,7 +18,7 @@ describe('models/product', function() {
 
   describe('findAll', function() {
     it('returns array of products', function() {
-      return this.product.findAll().bind(this).then(function(products) {
+      this.product.findAll().bind(this).then(function(products) {
         expect(products).to.be.an('array');
         expect(products.length).to.equal(1);
       });
@@ -27,7 +27,7 @@ describe('models/product', function() {
 
   describe('findByPk', function() {
     it('returns product', function() {
-      return this.product.findByPk(defaultProduct.product_id).bind(this).then(function(product) {
+      this.product.findByPk(defaultProduct.product_id).bind(this).then(function(product) {
         expect(product.product_id).to.equal(defaultProduct.product_id);
       });
     });
@@ -35,11 +35,27 @@ describe('models/product', function() {
 
   describe('create', function() {
     it('creates product', function() {
-      return this.product.create(defaultProps).bind(this).then(function(product) {
+      this.product.create(defaultProps).bind(this).then(function(product) {
         expect(product.product_id).to.be.ok;
         Object.keys(defaultProps).forEach(prop => {
           expect(product.get(prop)).to.equal(defaultProps[prop]);
         })
+      });
+      this.product.findAll().bind(this).then(function(products) {
+        expect(products).to.be.an('array');
+        expect(products.length).to.equal(2);
+      });
+    });
+  });
+
+  describe('delete', function() {
+    it('deletes the product', function() {
+      this.product.destroy({ where: { product_id: defaultProduct.product_id }}).bind(this).then(function(deleted) {
+        expect(deleted).to.be.equal(1);
+      });
+      this.product.findAll().bind(this).then(function(products) {
+        expect(products).to.be.an('array');
+        expect(products.length).to.equal(0);
       });
     });
   });

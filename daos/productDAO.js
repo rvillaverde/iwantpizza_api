@@ -25,11 +25,22 @@ module.exports = {
   },
   createProduct: function(product) {
     return new Promise(async (resolve, reject) => {
-      models.product.create(product);
-    }).then(product => {
-      resolve(product);
-    }).catch(err => {
-      reject(err);
+      models.product.create(product).then(product => {
+        resolve(product);
+      }).catch(err => {
+        reject(err);
+      });
+    });
+  },
+  deleteProduct: function(id) {
+    return new Promise(async (resolve, reject) => {
+      models.product.destroy({
+        where: { product_id: id }
+      }).then(deleted => {
+        resolve(deleted);
+      }).catch(err => {
+        reject(err);
+      });
     });
   }
 };
