@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
+const CustomerService = require('../services/customerService.js');
 const OrderService = require('../services/orderService.js');
+const ShippingService = require('../services/shippingService.js');
 
 // GET method to retrieve all orders
 router.get('/', async function(request, response) {
