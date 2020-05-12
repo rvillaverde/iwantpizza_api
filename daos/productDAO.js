@@ -32,6 +32,18 @@ module.exports = {
       });
     });
   },
+  updateProduct: function(id, fields) {
+    return new Promise(async (resolve, reject) => {
+      models.product.update(
+        fields,
+        { where: { product_id: id } }
+      ).then(updated => {
+        resolve(updated);
+      }).catch(err => {
+        reject(err);
+      });
+    });
+  },
   deleteProduct: function(id) {
     return new Promise(async (resolve, reject) => {
       models.product.destroy({

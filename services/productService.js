@@ -41,9 +41,14 @@ class ProductService {
     return savedProduct.product_id;
   }
 
-  static async editProduct(id, product, photo) {
-    product.photo_url = await uploadPhoto(photo);
-    const savedProduct = await ProductDAO.updateProduct(product);
+  static async updateProduct(product, photo) {
+    let fields = {};
+    fields.name = product.name;
+    fields.description = product.description;
+    fields.price = product.price;
+    if (photo) fields.photo_url = await uploadPhoto(photo);
+
+    const savedProduct = await ProductDAO.updateProduct(product.product_id, fields);
     return savedProduct.product_id;
   }
 

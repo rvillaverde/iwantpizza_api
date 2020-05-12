@@ -8,7 +8,7 @@ module.exports = {
           through: {
             model: models.order_product,
             as: 'order_product',
-            attributes: ['quantity'],
+            attributes: ['quantity', 'price'],
           }
          }]
       }).then(orders => {
@@ -25,7 +25,7 @@ module.exports = {
           through: {
             model: models.order_product,
             as: 'order_product',
-            attributes: ['quantity'],
+            attributes: ['quantity', 'price'],
           }
          }
         ]
@@ -44,6 +44,7 @@ module.exports = {
         order_id: savedOrder.order_id,
         product_id: item.id,
         quantity: item.quantity,
+        price: item.price
       });
     });
     await models.order_product.bulkCreate(orderProducts);

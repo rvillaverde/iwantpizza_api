@@ -26,11 +26,11 @@ router.post('', async function(request, response) {
 });
 
 // POST method to create a product
-router.post('/:id/edit', async function(request, response) {
-  let id = request.params.id;
+router.post('/edit', async function(request, response) {
   let product = request.body;
-  let photo = request.files.photo;
-  await ProductService.updateProduct(id, product, photo);
+  let photo = request.files ? request.files.photo : undefined;
+
+  await ProductService.updateProduct(product, photo);
   response.status(201).send({ product_id: product.product_id });
 });
 
